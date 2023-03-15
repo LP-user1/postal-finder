@@ -46,7 +46,8 @@ export class AppComponent implements OnInit {
       },
       (error: any) => {
         this.spinner = false;
-        this.errorMsg = 'Something went wrong! Try again.';
+        this.errorMsg =
+          'Something went wrong! Check your connection and try again.';
       }
     );
   }
