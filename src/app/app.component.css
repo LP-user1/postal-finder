@@ -79,16 +79,10 @@ button.btn-dark:disabled {
 .loading-anim {
   background: -webkit-linear-gradient(
     to right,
-    #2c5364b9,
-    #203a43be,
-    #0f2027be
+    #081418be,
+    #0c1113be
   ) !important;
-  background: linear-gradient(
-    to right,
-    #2c5364b9,
-    #203a43be,
-    #0f2027be
-  ) !important;
+  background: linear-gradient(to right, #081418be, #0c1113be) !important;
   display: flex;
   pointer-events: none !important;
   width: 100%;

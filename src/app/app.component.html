@@ -60,25 +60,38 @@
         <h5>Tips for Usage *</h5>
         <ul class="ms-2">
           <li>
-            In this page you can search any Postal <small>( pincode )</small> in
-            <b>India</b>.
-          </li>
-          <li>Postal code must in <q>6</q> digits to search the data.</li>
-          <li>
-            Once you click the <b>Get</b> button, your query will be process and
-            the data will appear below.
+            <small>
+              In this page you can search any Postal
+              <small>( pincode )</small> in <b>India</b>.
+            </small>
           </li>
           <li>
-            The data card contains some useful details like, ( area name,
-            district, block, and etc..)
+            <small
+              >Postal code must in <q>6</q> digits to search the data.</small
+            >
           </li>
           <li>
-            Also the data card contains <b><i>navigation link</i></b> button to
-            navigate the respective Post Office.
+            <small>
+              Once you click the <b>Get</b> button, your query will be process
+              and the data will appear below.
+            </small>
+          </li>
+          <li>
+            <small>
+              The data card contains some useful details like, ( area name,
+              district, block, and etc..)
+            </small>
           </li>
         </ul>
+        <h6 class="ms-2">New Feature !!</h6>
+        <p class="ms-4">
+          <small>
+            The data card contains <b><i>navigation link</i></b> button to
+            navigate the respective Post Office.</small
+          >
+        </p>
         <h6 class="ms-2">Good Search :</h6>
-        <p class="ms-4">For example &RightArrow; 629501</p>
+        <p class="ms-4"><small>For example &RightArrow; 629501</small></p>
       </div>
     </div>
   </div>
@@ -90,14 +103,11 @@
     <div class="row mb-3 px-2">
       <div class="col p-1 px-3 pt-3" *ngFor="let list1 of arrRes">
         <h2 class="text-dark">
-          <strong>Your Query : </strong
-          ><span class="text-decoration-underline">{{ pincode }}</span>
+          <strong>Your Query : </strong><span>{{ pincode }}</span>
         </h2>
         <p class="text-dark">
           <strong>Total List : </strong
-          ><span class="text-decoration-underline fw-bold">
-            {{ list1.Message | split }}</span
-          >
+          ><span class="fw-bold"> {{ list1.Message | split }}</span>
         </p>
       </div>
     </div>
@@ -111,7 +121,7 @@
             <div class="d-flex">
               <h5 class="card-title">{{ subList.Name }}</h5>
               <a
-                href="https://google.com/maps?q={{
+                href="https://www.google.com/maps?q={{
                   subList.Name
                 }}%20Post%20Office"
                 class="btn btn-warning"
