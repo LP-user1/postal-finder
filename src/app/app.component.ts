@@ -28,27 +28,31 @@ export class AppComponent implements OnInit {
     });
   }
   getPinData(): any {
-    this.spinner = true;
-    this.errorMsg = '';
-    this.pincode = this.searchForm.get('pincode')?.value;
-    this._api.getData(this.pincode).subscribe(
-      (res: any) => {
-        this.arrRes = res;
-        this.spinner = false;
-        res.forEach((el: any) => {
-          if (el.Status != 'Success') {
-            this.errorStatus = 'Error';
-            this.errorMsg = 'No Records Found!! Try different code.';
-          } else {
-            this.errorStatus = el.Status;
-          }
-        });
-      },
-      (error: any) => {
-        this.spinner = false;
-        this.errorMsg =
-          'Something went wrong! Check your connection and try again.';
-      }
-    );
+    if (this.searchForm.valid) {
+      this.spinner = true;
+      this.errorMsg = '';
+      this.pincode = this.searchForm.get('pincode')?.value;
+      this._api.getData(this.pincode).subscribe(
+        (res: any) => {
+          this.arrRes = res;
+          this.spinner = false;
+          res.forEach((el: any) => {
+            if (el.Status != 'Success') {
+              this.errorStatus = 'Error';
+              this.errorMsg = 'No Records Found!! Try different code.';
+            } else {
+              this.errorStatus = el.Status;
+            }
+          });
+        },
+        (error: any) => {
+          this.spinner = false;
+          this.errorMsg =
+            'Something went wrong! Check your connection and try again.';
+        }
+      );
+    } else {
+      this.errorMsg = 'Enter the Pincode..';
+    }
   }
 }

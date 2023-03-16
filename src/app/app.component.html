@@ -1,8 +1,8 @@
-<div class="" style="min-height: 100vh">
+<div class="" style="min-height: 50vh">
   <!-- Search Field -->
-  <div class="container-fluid mb-3" style="min-height: 40vh">
+  <div class="container-fluid hero-area shadow-lg">
     <div class="row">
-      <h1 class="display-5 text-center text-white mt-5 mb-2">
+      <h1 class="display-5 text-center text-white mt-3 mb-1">
         Search your Postal Code
       </h1>
       <div class="col-sm-6 col-md-6 col-lg-4 col-xs-4 mx-auto mt-4 p-4">
@@ -25,25 +25,17 @@
                   searchForm.get('pincode')?.touched
                 "
                 id="floatingInput"
-                title="Enter Postal code"
-                placeholder="Postal Code"
+                title="Enter Pin code"
+                placeholder="Pin Code"
               />
               <button
                 type="submit"
-                class="btn btn-light border-dark"
+                class="btn btn-dark"
                 [disabled]="spinner || !searchForm.valid"
               >
                 Get
               </button>
             </div>
-            <small
-              class="text-center text-white"
-              *ngIf="
-                searchForm.get('pincode')?.hasError('minlength') ||
-                searchForm.get('pincode')?.hasError('pattern')
-              "
-              >*Enter valid postal code.</small
-            >
           </div>
         </form>
       </div>
@@ -53,11 +45,40 @@
   <div class="container mt-5" *ngIf="errorMsg">
     <div class="col-sm-5 mt-5 px-2 mx-auto">
       <div
-        class="alert alert-warning rounded-3 show"
+        class="alert alert-light shadow rounded-3 show"
         role="alert"
         *ngIf="errorMsg"
       >
         <strong>Error Occured!</strong> {{ errorMsg }} .
+      </div>
+    </div>
+  </div>
+  <!-- Page info -->
+  <div class="container mt-3" *ngIf="errorStatus != 'Success'">
+    <div class="row">
+      <div class="col-12 p-3">
+        <h5>Tips for Usage *</h5>
+        <ul class="ms-2">
+          <li>
+            In this page you can search any Postal <small>( pincode )</small> in
+            <b>India</b>.
+          </li>
+          <li>Postal code must in <q>6</q> digits to search the data.</li>
+          <li>
+            Once you click the <b>Get</b> button, your query will be process and
+            the data will appear below.
+          </li>
+          <li>
+            The data card contains some useful details like, ( area name,
+            district, block, and etc..)
+          </li>
+          <li>
+            Also the data card contains <b><i>navigation link</i></b> button to
+            navigate the respective Post Office.
+          </li>
+        </ul>
+        <h6 class="ms-2">Good Search :</h6>
+        <p class="ms-4">For example &RightArrow; 629501</p>
       </div>
     </div>
   </div>
@@ -68,11 +89,11 @@
   >
     <div class="row mb-3 px-2">
       <div class="col p-1 px-3 pt-3" *ngFor="let list1 of arrRes">
-        <h2 class="text-white">
+        <h2 class="text-dark">
           <strong>Your Query : </strong
           ><span class="text-decoration-underline">{{ pincode }}</span>
         </h2>
-        <p class="text-white">
+        <p class="text-dark">
           <strong>Total List : </strong
           ><span class="text-decoration-underline fw-bold">
             {{ list1.Message | split }}</span
@@ -87,24 +108,68 @@
       >
         <div class="card rounded-4 bg-white shadow">
           <div class="card-body">
-            <h5 class="card-title">{{ subList.Name }}</h5>
+            <div class="d-flex">
+              <h5 class="card-title">{{ subList.Name }}</h5>
+              <a
+                href="https://google.com/maps?q={{
+                  subList.Name
+                }}%20Post%20Office"
+                class="btn btn-warning"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="location"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="ionicon"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 32C167.67 32 96 96.51 96 176c0 128 160 304 160 304s160-176 160-304c0-79.49-71.67-144-160-144zm0 224a64 64 0 1164-64 64.07 64.07 0 01-64 64z"
+                  />
+                </svg>
+              </a>
+            </div>
             <hr />
-            <p class="card-text">
-              <span><strong>Country :</strong> {{ subList.Country }}</span
-              ><br />
-              <span><strong>Division :</strong> {{ subList.Division }}</span
-              ><br />
-              <span><strong>Region :</strong> {{ subList.Region }}</span
-              ><br />
-              <span><strong>Block :</strong> {{ subList.Block }}</span
-              ><br />
-              <span><strong>District :</strong> {{ subList.District }}</span
-              ><br />
-              <span><strong>State :</strong> {{ subList.State }}</span
-              ><br />
-              <span><strong>Pincode :</strong> {{ subList.Pincode }}</span
-              ><br />
-            </p>
+            <div class="table">
+              <tbody>
+                <tr>
+                  <th>Country</th>
+                  <td>{{ subList.Country }}</td>
+                </tr>
+                <tr>
+                  <th>Division</th>
+                  <td>{{ subList.Division }}</td>
+                </tr>
+                <tr>
+                  <th>Region</th>
+                  <td>{{ subList.Region }}</td>
+                </tr>
+                <tr>
+                  <th>Block</th>
+                  <td>{{ subList.Block }}</td>
+                </tr>
+                <tr>
+                  <th>District</th>
+                  <td>{{ subList.District }}</td>
+                </tr>
+                <tr>
+                  <th>State</th>
+                  <td>{{ subList.State }}</td>
+                </tr>
+                <tr>
+                  <th>Pincode</th>
+                  <td>{{ subList.Pincode }}</td>
+                </tr>
+                <tr>
+                  <th>Delivery</th>
+                  <td>{{ subList.DeliveryStatus }}</td>
+                </tr>
+                <tr>
+                  <th>Circle</th>
+                  <td>{{ subList.Circle }}</td>
+                </tr>
+              </tbody>
+            </div>
           </div>
         </div>
       </div>
@@ -122,33 +187,39 @@
 <footer>
   <div class="container-fluid bg-light">
     <div class="row py-3 py-sm-4 py-md-5 px-3 px-sm-4 px-md-5">
-      <div class="col-12 col-md-6 py-4 px-2 px-sm-3 px-md-4">
+      <div class="col-12 col-md-6 py-2 py-sm-3 py-md-4 px-2 px-sm-3 px-md-4">
         <h4>Postal Code Finder</h4>
-        <p class="fs-6">
-          Designed and built for project purpose. I'm <b>LP</b>,
-          <b><i>Web Dev</i></b
-          >. Completed <q>Full stack Dev</q>. Here is my
-          <a
-            href="https://lp-user1.github.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Portfolio</a
-          >
-          👈🏻 check it out.
+        <p>
+          <small>
+            Designed and built for project purpose. Myself <b>Prasath</b> (LP),
+            <b><i>Web Developer</i></b
+            >.To know more about me
+            <a
+              href="https://lp-user1.github.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Click here</a
+            >
+            👈🏻
+          </small>
         </p>
-        <p class="fs-6">
-          All data has been gather from official <b>India's</b> Postal pincode
-          Service.
+        <p>
+          <small>
+            All data has been gather from official <b>India's</b> Postal
+            Service.
+          </small>
         </p>
-        <p class="fs-6">All rights reserved @{{ cYear }}</p>
+        <p>
+          <small>All rights reserved @ {{ cYear }}</small>
+        </p>
       </div>
-      <div class="col-12 col-sm-6 py-4 px-2 px-sm-3 px-md-4">
+      <div class="col-12 col-sm-6 py-2 py-sm-3 py-md-4 px-2 px-sm-3 px-md-4">
         <h4>Links</h4>
         <ul class="list-unstyled">
           <li>
             <a
               href="https://lp-user1.github.io"
-              class="text-dark"
+              class="fsmall"
               target="_blank"
               rel="noopener noreferrer"
               >Portfolio</a
@@ -157,7 +228,7 @@
           <li>
             <a
               href="https://lp-user1.github.io/RTO-Finder"
-              class="text-dark"
+              class="fsmall"
               target="_blank"
               rel="noopener noreferrer"
               >RTO Finder</a
@@ -166,7 +237,7 @@
           <li>
             <a
               href="https://github.com/LP-user1"
-              class="text-dark"
+              class="fsmall"
               target="_blank"
               rel="noopener noreferrer"
               >Github Profile</a

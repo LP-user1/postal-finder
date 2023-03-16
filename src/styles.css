@@ -1,10 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  background: -webkit-linear-gradient(
-    to right,
-    #2c5364,
-    #203a43,
-    #0f2027
-  ) !important;
-  background: linear-gradient(to right, #2c5364, #203a43, #0f2027) !important;
-}
